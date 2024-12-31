@@ -1,0 +1,27 @@
+{
+    "version": "1.0.0",
+    "name": "laravel/justit",
+    "description": "Rapid development kit for application interfaces based on Laravel",
+    "keywords": [
+        "justit",
+        "restful",
+        "laravel"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "idler8",
+            "email": "code@i674.top"
+        }
+    ],
+    "type": "library",
+    "minimum-stability": "dev",
+    "require": {
+        "laravel/framework": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Justit\\": "src/"
+        }
+    }
+}
