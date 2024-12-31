@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase;
 use Justit\Resource;
-use Justit\Controller;
 use Illuminate\Testing\AssertableJsonString;
 use Justit\ApiDocument;
 
