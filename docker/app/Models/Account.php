@@ -22,6 +22,6 @@ class Account extends Model
     }
     public function posts()
     {
-        return $this->hasMany(Post::class, 'account_id', 'id');
+        return $this->hasMany(Account\Post::class, 'account_id', 'id');
     }
 }

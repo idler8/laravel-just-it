@@ -8,7 +8,6 @@ use Exception;
 /** 数据资源管理系统 */
 class Controller
 {
-    public const namespace = 'App\\Models\\';
     /** 
      * 资源查询-全部
      * 可以获取所有本资源列表
@@ -17,7 +16,7 @@ class Controller
      */
     public function index(Request $request, $name)
     {
-        if (empty($model = Resource::get(static::namespace . Resource::namespace($name)))) {
+        if (empty($model = Resource::get(Resource::namespace($name)))) {
             throw new Exception('资源不存在', 418);
         }
         $builder = Resource::filter(collect($request->query()), $model);
@@ -42,7 +41,7 @@ class Controller
      **/
     public function paginate(Request $request, $name, $per_page, $page = 1)
     {
-        if (empty($model = Resource::get(static::namespace . Resource::namespace($name)))) {
+        if (empty($model = Resource::get(Resource::namespace($name)))) {
             throw new Exception('资源不存在', 418);
         }
         $builder = Resource::filter(collect($request->query()), $model);
@@ -60,7 +59,7 @@ class Controller
      */
     public function show(Request $request, $name, $id)
     {
-        if (empty($model = Resource::get(static::namespace . Resource::namespace($name)))) {
+        if (empty($model = Resource::get(Resource::namespace($name)))) {
             throw new Exception('资源不存在', 418);
         }
         $query = collect($request->query());
@@ -108,7 +107,7 @@ class Controller
      */
     public function store(Request $request, $name)
     {
-        if (empty($model = Resource::get(static::namespace . Resource::namespace($name)))) {
+        if (empty($model = Resource::get(Resource::namespace($name)))) {
             throw new Exception('资源不存在', 418);
         }
         $values = collect($request->post())->toArray();

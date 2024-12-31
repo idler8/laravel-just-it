@@ -3,18 +3,15 @@
 namespace Justit;
 
 use Composer\Autoload\ClassLoader;
-use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Composer;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Reflector;
-use Reflection;
 use ReflectionClass;
 use ReflectionMethod;
+use Exception;
+use Illuminate\Support\Facades\File;
 
 /**
  * 资源操作逻辑
@@ -33,7 +30,7 @@ class Resource
     /** 资源名转化为命名空间 */
     public static function namespace(string $name)
     {
-        return str_replace(['_', '.', '/'], ['', '\\', '\\'], ucwords($name, '._'));
+        return '\\APP\\Models\\' . str_replace(['_', '.', '/'], ['', '\\', '\\'], ucwords($name, '._'));
     }
     /**
      * 根据资源名获取模型类
@@ -81,14 +78,19 @@ class Resource
     /** 
      * 获取模型结构配置
      */
-    public static function document(string $namespace): Collection
+    public static function document(string $prefix = ''): Collection
     {
-        return collect(ClassLoader::getRegisteredLoaders()[base_path('vendor')]->getClassMap())
-            ->filter(fn($path, $cls) => Str::contains($cls, $namespace))
-            ->keys()
-            ->map(function ($item) use ($namespace) {
-                $name = Str::after($item, $namespace);
-                $ref = new ReflectionClass($namespace . $name);
+        $base_dir = app_path('Models');
+        $base_namespace = 'App\\Models\\';
+        return collect(File::allFiles($base_dir))
+            ->map(function ($item) use ($base_namespace, $prefix) {
+                $name =  str_replace(
+                    ['.php', "/"],
+                    ['', "\\"],
+                    $item->getRelativePathName()
+                );
+                if (!empty($prefix) && !Str::startsWith($name, $prefix)) return null;
+                $ref = new ReflectionClass($base_namespace . $name);
                 if (empty($describe = $ref->getDocComment())) {
                     return null;
                 }
