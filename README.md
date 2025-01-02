@@ -29,7 +29,50 @@ Route::middleware('api')
         Route::get("{name}/{pre_page}/{page}", "Controller@paginate");
     });
 ```
-For the configuration of Route, please refer to the official documentation of [Laravel](https://laravel.com/docs/routing#parameters-and-dependency-injection)  
+
+For the configuration of Route, please refer to the official documentation of [Laravel](https://laravel.com/docs/routing#parameters-and-dependency-injection)
+
+```php
+/**
+ * This method is used to extract API documentation
+ * Methods without general annotations will not be extracted
+ */
+dd(\Justit\ApiDocument::document('api'/** prefix of middleware */));
+[[
+    "name" => "From the first line of the general comment on the method",
+    "describe" => "From the latter line of the general comment on the method",
+    "parameters" =>  [[
+        "key" => "The first part from @param",
+        "name" => "The latter part from @param"
+    ]],
+    "key" => "Controller@method",
+    "urls" => ["METHOD:uri"]
+]]
+/**
+ * This method extracts Model class documents from all app/Models directories
+ * Classes that are not Model or have no general annotations will not be extracted
+ */
+dd(\Justit\Resource::document('App\\Models\\'/** prefix of namespace */));
+[[
+    "name" => "用户账户"
+    "key" => "Account"
+    "parameters" => [[
+        "key"=>"Data table field names",
+        "name"=>"Data table field comments"
+    ],[
+        "key"=>"(:)prefix to scope name",
+        "name"=>"Function Comments"
+    ],[
+        "key"=>"-/+",
+        "name"=>"Special parameters"
+    ]],
+    "relations" => [[
+        "key"=>"The name of the method that will explicitly output a Relation(hasOne/hasMany)",
+        "name"=>"Function Comments "
+    ]]
+]]
+```
+
 For more practical methods, please refer to the [source code](/src) or [test cases](/docker/tests)
 
 ## Test Environment
@@ -40,6 +83,7 @@ docker run --rm -it -v $PWD:/app $(docker build -f ./docker/Dockerfile . -q)
 # Copy test cases & Run test
 php artisan justit
 ```
+
 If files in the [docker](/docker) directory are deleted, it is recommended to restart the Docker based testing environment.
 
 ## License
@@ -47,4 +91,5 @@ If files in the [docker](/docker) directory are deleted, it is recommended to re
 Laravel Just it is open-sourced software licensed under the [MIT license](LICENSE.md).
 
 ## Why develop it
+
 This is one of the achievements of my years of development experience. I have used it in many projects and it has helped me develop multiple new full stack projects simultaneously in a very short period of time. I included it in my college graduation thesis, but my teacher criticized it as useless. I want to know the public's opinion on this, so I put it here.
