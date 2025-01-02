@@ -30,7 +30,7 @@ class Resource
     /** 资源名转化为命名空间 */
     public static function namespace(string $name)
     {
-        return '\\APP\\Models\\' . str_replace(['_', '.', '/'], ['', '\\', '\\'], ucwords($name, '._'));
+        return '\\App\\Models\\' . str_replace(['_', '.', '/'], ['', '\\', '\\'], ucwords($name, '._'));
     }
     /**
      * 根据资源名获取模型类

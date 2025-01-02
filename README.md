@@ -75,28 +75,28 @@ dd(\Justit\Resource::document('App\\Models\\'/** prefix of namespace */));
 /**
  * Retrieve all resource data
  */
-Http::get('/{resource.key}?key=value');
+Http::get('/r/{resource.key}?key=value');
 /**
  * Retrieve resource pagination data
  */
-Http::get('/{resource.key}/{per_page}/{page}?key=value');
+Http::get('/r/{resource.key}/{per_page}/{page}?key=value');
 /**
  * Retrieve single resource pagination data
  */
-Http::get('/{resource.key}/{id/+/-}?key=value');
+Http::get('/r/{resource.key}/{id/+/-}?key=value');
 /**
  * Destroy single resource pagination data
  */
-Http::delete('/{resource.key}/{id/+/-}?key=value');
+Http::delete('/r/{resource.key}/{id/+/-}?key=value');
 /**
  * Update single resource pagination data
  * Query is only used for retrieval
  */
-Http::put('/{resource.key}/{id/+/-}?key=value',['key'=>'value']);
+Http::put('/r/{resource.key}/{id/+/-}?key=value',['key'=>'value']);
 /**
  * Insert single resource pagination data
  */
-Http::post('/{resource.key}',['key'=>'value');
+Http::post('/r/{resource.key}',['key'=>'value');
 ```
 
 For more practical methods, please refer to the [source code](/src) or [test cases](/docker/tests)
