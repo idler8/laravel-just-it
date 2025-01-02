@@ -39,13 +39,13 @@ For the configuration of Route, please refer to the official documentation of [L
  */
 dd(\Justit\ApiDocument::document('api'/** prefix of middleware */));
 [[
+    "key" => "Controller@method",
     "name" => "From the first line of the general comment on the method",
     "describe" => "From the latter line of the general comment on the method",
     "parameters" =>  [[
         "key" => "The first part from @param",
         "name" => "The latter part from @param"
     ]],
-    "key" => "Controller@method",
     "urls" => ["METHOD:uri"]
 ]]
 /**
@@ -54,8 +54,9 @@ dd(\Justit\ApiDocument::document('api'/** prefix of middleware */));
  */
 dd(\Justit\Resource::document('App\\Models\\'/** prefix of namespace */));
 [[
-    "name" => "From the first line of the general comment on the class"
-    "key" => "From the latter line of the general comment on the class"
+    "key" => "Name of Model (using. instead of subfolders delimiter)",
+    "name" => "From the first line of the general comment on the class",
+    "describe" => "From the latter line of the general comment on the class",
     "parameters" => [[
         "key"=>"Data table field names",
         "name"=>"Data table field comments"
@@ -71,6 +72,31 @@ dd(\Justit\Resource::document('App\\Models\\'/** prefix of namespace */));
         "name"=>"Function Comments "
     ]]
 ]]
+/**
+ * Retrieve all resource data
+ */
+Http::get('/{resource.key}?key=value');
+/**
+ * Retrieve resource pagination data
+ */
+Http::get('/{resource.key}/{per_page}/{page}?key=value');
+/**
+ * Retrieve single resource pagination data
+ */
+Http::get('/{resource.key}/{id/+/-}?key=value');
+/**
+ * Destroy single resource pagination data
+ */
+Http::delete('/{resource.key}/{id/+/-}?key=value');
+/**
+ * Update single resource pagination data
+ * Query is only used for retrieval
+ */
+Http::put('/{resource.key}/{id/+/-}?key=value',['key'=>'value']);
+/**
+ * Insert single resource pagination data
+ */
+Http::post('/{resource.key}',['key'=>'value');
 ```
 
 For more practical methods, please refer to the [source code](/src) or [test cases](/docker/tests)
