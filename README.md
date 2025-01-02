@@ -54,8 +54,8 @@ dd(\Justit\ApiDocument::document('api'/** prefix of middleware */));
  */
 dd(\Justit\Resource::document('App\\Models\\'/** prefix of namespace */));
 [[
-    "name" => "用户账户"
-    "key" => "Account"
+    "name" => "From the first line of the general comment on the class"
+    "key" => "From the latter line of the general comment on the class"
     "parameters" => [[
         "key"=>"Data table field names",
         "name"=>"Data table field comments"
