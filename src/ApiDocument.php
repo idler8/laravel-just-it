@@ -4,8 +4,8 @@ namespace Justit;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
-use ReflectionClass;
 use Illuminate\Support\Str;
+use ReflectionClass;
 
 class ApiDocument
 {

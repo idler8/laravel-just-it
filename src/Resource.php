@@ -2,16 +2,15 @@
 
 namespace Justit;
 
-use Composer\Autoload\ClassLoader;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use ReflectionClass;
 use ReflectionMethod;
 use Exception;
-use Illuminate\Support\Facades\File;
 
 /**
  * 资源操作逻辑
