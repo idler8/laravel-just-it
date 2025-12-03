@@ -1,5 +1,5 @@
 {
-    "version": "1.0.4",
+    "version": "1.0.5",
     "name": "idler8/laravel-just-it",
     "description": "Rapid development kit for application interfaces based on Laravel",
     "keywords": [
@@ -17,7 +17,7 @@
     "type": "library",
     "minimum-stability": "dev",
     "require": {
-        "laravel/framework": "^11.0"
+        "laravel/framework": ">=11.0"
     },
     "autoload": {
         "psr-4": {
